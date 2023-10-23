@@ -26,5 +26,28 @@ Spt <- readRDS("~/Dauphine/M1 Quantitative Economics/Data Management/Dplyr-Lab--
 
 ## Exercise 1 
 
+### Question 1 :
+
+### Question 2 :
+
+### Question 3 :
+
+### Question 4 :
+
+### Question 5 :
+
+### Question 6 :
+
+
+
 
 ## Exercise 2
+
+### Question 1 :
+
+### Question 2 :
+
+### Question 3 :
+
+### Question 4 :
+
