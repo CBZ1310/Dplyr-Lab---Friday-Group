@@ -1,0 +1,30 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+echo: false 
+author : Cédric BAZILE
+---
+
+```{r}
+#Setup
+
+here::i_am("Dplyr-Lab---Friday-Group.Rproj")
+library(here)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+Spt <- readRDS("~/Dauphine/M1 Quantitative Economics/Data Management/Dplyr-Lab---Friday-Group/top-spotify-songs-from-20102019-by-year.Rds")
+```
+
+
+<center>
+
+# Dplyr-Lab (Friday-Group)
+
+</center>
+
+## Exercise 1 
+
+
+## Exercise 2
