@@ -1,9 +1,10 @@
 ---
-title: "Untitled"
+title: "Dplyr and Tidyr lab"
 format: html
 editor: visual
-echo: false 
 author : Cédric BAZILE
+execute: 
+  echo: FALSE
 ---
 
 ```{r}
@@ -17,29 +18,71 @@ library(tidyr)
 Spt <- readRDS("~/Dauphine/M1 Quantitative Economics/Data Management/Dplyr-Lab---Friday-Group/top-spotify-songs-from-20102019-by-year.Rds")
 ```
 
-
 <center>
 
 # Dplyr-Lab (Friday-Group)
 
 </center>
 
-## Exercise 1 
+## Exercise 1
 
-### Question 1 :
+### Question 1 : A global perspective on the music scene during the last decade
 
-### Question 2 :
+```{r}
+Var_name <- names(Spt)
+Var_name
 
-### Question 3 :
+
+```
+
+```{r}
+d_song <- Spt %>% distinct(title,.keep_all = TRUE) %>% nrow()
+d_art <- Spt %>% distinct(artist, .keep_all = TRUE) %>% nrow()
+d_genre <- Spt %>% distinct(`top genre`, .keep_all = TRUE) %>% nrow()
+
+
+```
+
+```{r}
+#I create some labels to be sure to recognize my data if I forget what it is
+
+library("labelled")
+var_label(d_art) <- "Artists (distinct data)"
+var_label(d_song) <- "Chansons (distinct data)"
+var_label(d_genre) <- "Genre (distinct data)"
+
+#Test
+var_label(d_art)
+var_label(d_song) 
+var_label(d_genre)
+```
+
+During the decade, `r d_song` has been produced by `r d_art` artists. `r d_genre` different musical genre inhabit the nightclubs, house and playlists.
+
+### Question 2 : Number of songs per year
+
+```{r}
+s_by_y <- Spt %>% distinct(artist,title, .keep_all = TRUE) %>% group_by(year)  %>% summarise("Number of songs" = n())
+var_label(s_by_y) <- "Song by year"
+s_by_y <- s_by_y %>% 
+  rename("Release year" = year)
+knitr::kable(s_by_y, caption ="Volume of production", format= "markdown")
+```
+
+### Question 3 : Most prolific artist
+
+```{r}
+Top_artist <-Spt %>% group_by(artist)%>% summarise("Number of songs" = n()) %>% arrange(desc(`Number of songs`))
+
+```
+
+This decade, `r Top_artist$artist [1,]`was the artist who produced the most song with
 
 ### Question 4 :
 
 ### Question 5 :
 
 ### Question 6 :
-
-
-
 
 ## Exercise 2
 
@@ -50,4 +93,3 @@ Spt <- readRDS("~/Dauphine/M1 Quantitative Economics/Data Management/Dplyr-Lab--
 ### Question 3 :
 
 ### Question 4 :
-
