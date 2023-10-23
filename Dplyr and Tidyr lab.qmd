@@ -1,6 +1,6 @@
 ---
 title: "Dplyr and Tidyr lab"
-format: pdf
+format: html
 editor: visual
 author : Cédric BAZILE
 execute: 
@@ -29,7 +29,7 @@ Spt <- readRDS("~/Dauphine/M1 Quantitative Economics/Data Management/Dplyr-Lab--
 
 ### Question 1 : A global perspective on the music scene during the last decade
 
-```{r}
+```{r Variable name}
 Var_name <- names(Spt)
 Var_name
 
@@ -52,10 +52,6 @@ var_label(d_art) <- "Artists (distinct data)"
 var_label(d_song) <- "Chansons (distinct data)"
 var_label(d_genre) <- "Genre (distinct data)"
 
-#Test
-var_label(d_art)
-var_label(d_song) 
-var_label(d_genre)
 ```
 
 During the decade, `r d_song` has been produced by `r d_art` artists. `r d_genre` different musical genre inhabit the nightclubs, house and playlists.
@@ -73,13 +69,25 @@ knitr::kable(s_by_y, caption ="Volume of production", format= "markdown")
 ### Question 3 : Most prolific artist
 
 ```{r}
-Top_artist <-Spt %>% group_by(artist)%>% summarise("Number of songs" = n()) %>% arrange(desc(`Number of songs`))
+Top_artist <-Spt %>% group_by(artist)%>% summarise("nsongs" = n()) %>% arrange(desc(nsongs))
 
+top_artist_one <- head(Top_artist, 1)
+
+Top_artist_name <- top_artist_one$artist
+
+Top_artist_ns<- top_artist_one$nsongs
+
+Mysentence <- paste("The  artist producing more songs was", Top_artist_name, "with ", Top_artist_ns, "songs")
+cat(Mysentence)
 ```
 
-This decade, `r Top_artist$artist [1,]`was the artist who produced the most songs who produced `` r Top_artist$`Number of songs`[1,] . ``
+### Question 4 : BPM
 
-### Question 4 :
+```{r}
+BPM_stats <- Spt %>% distinct(title, .keep_all = TRUE) %>% group_by(`top genre`)%>% 
+  summarize("Number of songs"=n(),"Min"=min(bpm), "Mediane"=median(bpm), "Moyenne"=mean(bpm), "Max"=max(bpm), "Sd in percentage"=(sd(bpm)/mean(bpm)))
+knitr::kable(BPM_stats, caption ="Statistics on the BPM", format= "markdown")
+```
 
 ### Question 5 :
 

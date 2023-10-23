@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cédric BAZILE">
+
+<title>Dplyr and Tidyr lab</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Dplyr and Tidyr lab_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Dplyr and Tidyr lab_files/libs/quarto-html/quarto.js"></script>
+<script src="Dplyr and Tidyr lab_files/libs/quarto-html/popper.min.js"></script>
+<script src="Dplyr and Tidyr lab_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Dplyr and Tidyr lab_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Dplyr and Tidyr lab_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Dplyr and Tidyr lab_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Dplyr and Tidyr lab_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Dplyr and Tidyr lab_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Dplyr and Tidyr lab_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Dplyr and Tidyr lab</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Cédric BAZILE </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>here() starts at C:/Users/cedri/OneDrive/Documents/Dauphine/M1 Quantitative Economics/Data Management/Dplyr-Lab---Friday-Group</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attachement du package : 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Les objets suivants sont masqués depuis 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Les objets suivants sont masqués depuis 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+</div>
+<center>
+<section id="dplyr-lab-friday-group" class="level1">
+<h1>Dplyr-Lab (Friday-Group)</h1>
+</section></center>
+<section id="exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
+<section id="question-1-a-global-perspective-on-the-music-scene-during-the-last-decade" class="level3">
+<h3 class="anchored" data-anchor-id="question-1-a-global-perspective-on-the-music-scene-during-the-last-decade">Question 1 : A global perspective on the music scene during the last decade</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "title"     "artist"    "top genre" "year"      "bpm"       "nrgy"     
+ [7] "dnce"      "dB"        "live"      "val"       "dur"       "acous"    
+[13] "spch"      "pop"      </code></pre>
+</div>
+</div>
+<p>During the decade, 584 has been produced by 184 artists. 50 different musical genre inhabit the nightclubs, house and playlists.</p>
+</section>
+<section id="question-2-number-of-songs-per-year" class="level3">
+<h3 class="anchored" data-anchor-id="question-2-number-of-songs-per-year">Question 2 : Number of songs per year</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Volume of production</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Release year</th>
+<th style="text-align: right;">Number of songs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">51</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">70</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2014</td>
+<td style="text-align: right;">57</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2015</td>
+<td style="text-align: right;">94</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2016</td>
+<td style="text-align: right;">74</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">64</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2018</td>
+<td style="text-align: right;">62</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">31</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="question-3-most-prolific-artist" class="level3">
+<h3 class="anchored" data-anchor-id="question-3-most-prolific-artist">Question 3 : Most prolific artist</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>The  artist producing more songs was Katy Perry with  17 songs</code></pre>
+</div>
+</div>
+</section>
+<section id="question-4-bpm" class="level3">
+<h3 class="anchored" data-anchor-id="question-4-bpm">Question 4 : BPM</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Statistics on the BPM</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 19%">
+<col style="width: 4%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 4%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">top genre</th>
+<th style="text-align: right;">Number of songs</th>
+<th style="text-align: right;">Min</th>
+<th style="text-align: right;">Mediane</th>
+<th style="text-align: right;">Moyenne</th>
+<th style="text-align: right;">Max</th>
+<th style="text-align: right;">Sd in percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">acoustic pop</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">155.0</td>
+<td style="text-align: right;">155.0000</td>
+<td style="text-align: right;">185</td>
+<td style="text-align: right;">0.2737188</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">alaska indie</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">132</td>
+<td style="text-align: right;">132.0</td>
+<td style="text-align: right;">132.0000</td>
+<td style="text-align: right;">132</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">alternative r&amp;b</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: right;">136.0</td>
+<td style="text-align: right;">136.0000</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">art pop</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">108.5</td>
+<td style="text-align: right;">115.1250</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">0.1767039</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">atl hip hop</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">112.0</td>
+<td style="text-align: right;">108.5000</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">0.2010118</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">australian dance</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">115.0</td>
+<td style="text-align: right;">128.8333</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">0.3492166</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">australian hip hop</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">95.0</td>
+<td style="text-align: right;">95.0000</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">australian pop</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">127</td>
+<td style="text-align: right;">150.0</td>
+<td style="text-align: right;">153.8000</td>
+<td style="text-align: right;">186</td>
+<td style="text-align: right;">0.1701351</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">barbadian pop</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">127.0</td>
+<td style="text-align: right;">125.3333</td>
+<td style="text-align: right;">206</td>
+<td style="text-align: right;">0.2962992</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">baroque pop</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">146.0</td>
+<td style="text-align: right;">146.0000</td>
+<td style="text-align: right;">184</td>
+<td style="text-align: right;">0.3680830</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">belgian edm</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">122.0</td>
+<td style="text-align: right;">122.0000</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">big room</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">106</td>
+<td style="text-align: right;">125.0</td>
+<td style="text-align: right;">122.3000</td>
+<td style="text-align: right;">134</td>
+<td style="text-align: right;">0.0722191</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">boy band</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">120.0</td>
+<td style="text-align: right;">116.1333</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">0.1973750</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">british soul</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">108.0</td>
+<td style="text-align: right;">109.3333</td>
+<td style="text-align: right;">164</td>
+<td style="text-align: right;">0.4390244</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">brostep</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">121.0</td>
+<td style="text-align: right;">121.0000</td>
+<td style="text-align: right;">142</td>
+<td style="text-align: right;">0.2454420</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">canadian contemporary r&amp;b</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">120.0</td>
+<td style="text-align: right;">130.0000</td>
+<td style="text-align: right;">186</td>
+<td style="text-align: right;">0.2926449</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">canadian hip hop</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">109.0</td>
+<td style="text-align: right;">109.0000</td>
+<td style="text-align: right;">118</td>
+<td style="text-align: right;">0.1167699</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">canadian latin</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">98</td>
+<td style="text-align: right;">98.0</td>
+<td style="text-align: right;">98.0000</td>
+<td style="text-align: right;">98</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">canadian pop</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">119.0</td>
+<td style="text-align: right;">122.1290</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">0.2253006</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">candy pop</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">109.0</td>
+<td style="text-align: right;">109.0000</td>
+<td style="text-align: right;">126</td>
+<td style="text-align: right;">0.2205654</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">celtic rock</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">85.0</td>
+<td style="text-align: right;">85.0000</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">chicago rap</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">125.0</td>
+<td style="text-align: right;">125.0000</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">colombian pop</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">128.0</td>
+<td style="text-align: right;">126.0000</td>
+<td style="text-align: right;">138</td>
+<td style="text-align: right;">0.1040863</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">complextro</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">127.0</td>
+<td style="text-align: right;">120.3333</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">0.1005048</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">contemporary country</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">86.0</td>
+<td style="text-align: right;">86.0000</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dance pop</td>
+<td style="text-align: right;">323</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">120.0</td>
+<td style="text-align: right;">118.5975</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">0.1893907</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">danish pop</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">120.0</td>
+<td style="text-align: right;">120.0000</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">detroit hip hop</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">84.5</td>
+<td style="text-align: right;">84.5000</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">0.0418406</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">downtempo</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">133.5</td>
+<td style="text-align: right;">133.5000</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">0.3548776</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">edm</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">102.0</td>
+<td style="text-align: right;">103.0000</td>
+<td style="text-align: right;">118</td>
+<td style="text-align: right;">0.1126660</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">electro</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">108.0</td>
+<td style="text-align: right;">108.0000</td>
+<td style="text-align: right;">116</td>
+<td style="text-align: right;">0.1047566</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">electro house</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">124.0</td>
+<td style="text-align: right;">124.0000</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">electronic trap</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">98.0</td>
+<td style="text-align: right;">98.0000</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0.0288615</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">electropop</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">103.0</td>
+<td style="text-align: right;">112.8462</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">0.2000859</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">escape room</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">127.0</td>
+<td style="text-align: right;">127.0000</td>
+<td style="text-align: right;">158</td>
+<td style="text-align: right;">0.3452017</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">folk-pop</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">80.5</td>
+<td style="text-align: right;">80.5000</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">0.0966233</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">french indie pop</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">123</td>
+<td style="text-align: right;">123.0</td>
+<td style="text-align: right;">123.0000</td>
+<td style="text-align: right;">123</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hip hop</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">91.5</td>
+<td style="text-align: right;">93.7500</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">0.1453109</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hip pop</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">98.5</td>
+<td style="text-align: right;">100.6667</td>
+<td style="text-align: right;">111</td>
+<td style="text-align: right;">0.0867524</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hollywood</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">92.0</td>
+<td style="text-align: right;">92.0000</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">house</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">122.0</td>
+<td style="text-align: right;">122.0000</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">indie pop</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">148</td>
+<td style="text-align: right;">151.5</td>
+<td style="text-align: right;">151.5000</td>
+<td style="text-align: right;">155</td>
+<td style="text-align: right;">0.0326716</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">irish singer-songwriter</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">129</td>
+<td style="text-align: right;">129.0</td>
+<td style="text-align: right;">129.0000</td>
+<td style="text-align: right;">129</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">latin</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">141.5</td>
+<td style="text-align: right;">140.7500</td>
+<td style="text-align: right;">186</td>
+<td style="text-align: right;">0.3407032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metropopolis</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">127</td>
+<td style="text-align: right;">127.0</td>
+<td style="text-align: right;">127.0000</td>
+<td style="text-align: right;">127</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">moroccan pop</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">110.0</td>
+<td style="text-align: right;">110.0000</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neo mellow</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">116.0</td>
+<td style="text-align: right;">109.1111</td>
+<td style="text-align: right;">138</td>
+<td style="text-align: right;">0.1836110</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">permanent wave</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">138.0</td>
+<td style="text-align: right;">137.2500</td>
+<td style="text-align: right;">148</td>
+<td style="text-align: right;">0.0697262</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pop</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">116.0</td>
+<td style="text-align: right;">116.8727</td>
+<td style="text-align: right;">190</td>
+<td style="text-align: right;">0.2148000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tropical house</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">129.5</td>
+<td style="text-align: right;">129.5000</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">0.1037454</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="question-5" class="level3">
+<h3 class="anchored" data-anchor-id="question-5">Question 5 :</h3>
+</section>
+<section id="question-6" class="level3">
+<h3 class="anchored" data-anchor-id="question-6">Question 6 :</h3>
+</section>
+</section>
+<section id="exercise-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
+<section id="question-1" class="level3">
+<h3 class="anchored" data-anchor-id="question-1">Question 1 :</h3>
+</section>
+<section id="question-2" class="level3">
+<h3 class="anchored" data-anchor-id="question-2">Question 2 :</h3>
+</section>
+<section id="question-3" class="level3">
+<h3 class="anchored" data-anchor-id="question-3">Question 3 :</h3>
+</section>
+<section id="question-4" class="level3">
+<h3 class="anchored" data-anchor-id="question-4">Question 4 :</h3>
+</section>
+</section>
+
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
