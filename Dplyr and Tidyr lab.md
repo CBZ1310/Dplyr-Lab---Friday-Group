@@ -53,13 +53,7 @@ Les objets suivants sont masqués depuis 'package:base':
 
 
 ::: {.cell}
-::: {.cell-output .cell-output-stdout}
-```
- [1] "title"     "artist"    "top genre" "year"      "bpm"       "nrgy"     
- [7] "dnce"      "dB"        "live"      "val"       "dur"       "acous"    
-[13] "spch"      "pop"      
-```
-:::
+
 :::
 
 ::: {.cell}
@@ -171,16 +165,169 @@ Table: Statistics on the BPM
 :::
 
 
-### Question 5 :
+### Question 5 : Energy and Dance ability
+
+
+::: {.cell}
+::: {.cell-output-display}
+Table: Key Medians
+
+| year| Energy| Danceab|
+|----:|------:|-------:|
+| 2010|   82.0|    67.0|
+| 2011|   77.0|    66.0|
+| 2012|   79.0|    67.0|
+| 2013|   78.0|    62.5|
+| 2014|   72.0|    63.0|
+| 2015|   75.0|    66.5|
+| 2016|   70.5|    64.0|
+| 2017|   72.0|    68.5|
+| 2018|   67.0|    67.5|
+| 2019|   68.0|    70.0|
+:::
+:::
+
 
 ### Question 6 :
 
+
+::: {.cell}
+::: {.cell-output-display}
+![](Dplyr-and-Tidyr-lab_files/figure-html/Median by year-1.png){width=672}
+:::
+:::
+
+
 ## Exercise 2
 
-### Question 1 :
 
-### Question 2 :
+::: {.cell}
+::: {.cell-output .cell-output-stdout}
+```
+ [1] "Marital status"                                
+ [2] "Application mode"                              
+ [3] "Application order"                             
+ [4] "Course"                                        
+ [5] "Daytime/evening attendance\t"                  
+ [6] "Previous qualification"                        
+ [7] "Previous qualification (grade)"                
+ [8] "Nacionality"                                   
+ [9] "Mother's qualification"                        
+[10] "Father's qualification"                        
+[11] "Mother's occupation"                           
+[12] "Father's occupation"                           
+[13] "Admission grade"                               
+[14] "Displaced"                                     
+[15] "Educational special needs"                     
+[16] "Debtor"                                        
+[17] "Tuition fees up to date"                       
+[18] "Gender"                                        
+[19] "Scholarship holder"                            
+[20] "Age at enrollment"                             
+[21] "International"                                 
+[22] "Curricular units 1st sem (credited)"           
+[23] "Curricular units 1st sem (enrolled)"           
+[24] "Curricular units 1st sem (evaluations)"        
+[25] "Curricular units 1st sem (approved)"           
+[26] "Curricular units 1st sem (grade)"              
+[27] "Curricular units 1st sem (without evaluations)"
+[28] "Curricular units 2nd sem (credited)"           
+[29] "Curricular units 2nd sem (enrolled)"           
+[30] "Curricular units 2nd sem (evaluations)"        
+[31] "Curricular units 2nd sem (approved)"           
+[32] "Curricular units 2nd sem (grade)"              
+[33] "Curricular units 2nd sem (without evaluations)"
+[34] "Unemployment rate"                             
+[35] "Inflation rate"                                
+[36] "GDP"                                           
+[37] "Target"                                        
+```
+:::
+:::
 
-### Question 3 :
 
-### Question 4 :
+### Question 1 : Age of enrollement
+
+
+::: {.cell}
+::: {.cell-output .cell-output-stderr}
+```
+`summarise()` has grouped output by 'Gender'. You can override using the
+`.groups` argument.
+```
+:::
+
+::: {.cell-output-display}
+Table: Median Age of Enrollment
+
+|Gender |Marital status    | Median value|
+|:------|:-----------------|------------:|
+|Male   |single            |         20.0|
+|Male   |married           |         37.0|
+|Male   |divorced          |         40.5|
+|Male   |widower           |         43.0|
+|Male   |facto union       |         34.0|
+|Male   |legally separated |         55.0|
+|Female |single            |         19.0|
+|Female |married           |         34.0|
+|Female |divorced          |         38.0|
+|Female |widower           |         21.0|
+|Female |facto union       |         27.0|
+|Female |legally separated |         41.0|
+:::
+:::
+
+
+### Question 2 : New tables
+
+
+::: {.cell}
+::: {.cell-output-display}
+Table: Median Age of Enrollment (v2)
+
+|Marital status    | Male| Female|
+|:-----------------|----:|------:|
+|single            | 20.0|     19|
+|married           | 37.0|     34|
+|divorced          | 40.5|     38|
+|widower           | 43.0|     21|
+|facto union       | 34.0|     27|
+|legally separated | 55.0|     41|
+:::
+:::
+
+
+### Question 3 : Conditional means
+
+
+::: {.cell}
+::: {.cell-output .cell-output-stderr}
+```
+Warning: There was 1 warning in `summarize()`.
+ℹ In argument: `across(starts_with("Curricular units"), mean, na.rm = TRUE)`.
+ℹ In group 1: `Target = Dropout`.
+Caused by warning:
+! The `...` argument of `across()` is deprecated as of dplyr 1.1.0.
+Supply arguments directly to `.fns` through an anonymous function instead.
+
+  # Previously
+  across(a:b, mean, na.rm = TRUE)
+
+  # Now
+  across(a:b, \(x) mean(x, na.rm = TRUE))
+```
+:::
+
+::: {.cell-output-display}
+Table: Conditional Mean by Curricular Units
+
+|Target   | Curricular units 1st sem (credited)| Curricular units 1st sem (enrolled)| Curricular units 1st sem (evaluations)| Curricular units 1st sem (approved)| Curricular units 1st sem (grade)| Curricular units 1st sem (without evaluations)| Curricular units 2nd sem (credited)| Curricular units 2nd sem (enrolled)| Curricular units 2nd sem (evaluations)| Curricular units 2nd sem (approved)| Curricular units 2nd sem (grade)| Curricular units 2nd sem (without evaluations)|
+|:--------|-----------------------------------:|-----------------------------------:|--------------------------------------:|-----------------------------------:|--------------------------------:|----------------------------------------------:|-----------------------------------:|-----------------------------------:|--------------------------------------:|-----------------------------------:|--------------------------------:|----------------------------------------------:|
+|Dropout  |                           0.6094300|                            5.821253|                               7.751583|                            2.551724|                         7.256655|                                      0.1921182|                           0.4496833|                            5.780436|                               7.173821|                            1.940183|                         5.899339|                                      0.2378607|
+|Graduate |                           0.8474423|                            6.669534|                               8.276596|                            6.232232|                        12.643655|                                      0.0882752|                           0.6668176|                            6.628339|                               8.142146|                            6.177003|                        12.697276|                                      0.0805794|
+|Enrolled |                           0.5075567|                            5.964735|                               9.341310|                            4.318640|                        11.125257|                                      0.1775819|                           0.3589421|                            5.938287|                               9.435768|                            4.057934|                        11.117364|                                      0.1876574|
+:::
+:::
+
+
+### Question 4 : Pivot

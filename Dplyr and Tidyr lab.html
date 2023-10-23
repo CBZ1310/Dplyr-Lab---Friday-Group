@@ -94,13 +94,6 @@ Attachement du package : 'dplyr'</code></pre>
 <h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
 <section id="question-1-a-global-perspective-on-the-music-scene-during-the-last-decade" class="level3">
 <h3 class="anchored" data-anchor-id="question-1-a-global-perspective-on-the-music-scene-during-the-last-decade">Question 1 : A global perspective on the music scene during the last decade</h3>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "title"     "artist"    "top genre" "year"      "bpm"       "nrgy"     
- [7] "dnce"      "dB"        "live"      "val"       "dur"       "acous"    
-[13] "spch"      "pop"      </code></pre>
-</div>
-</div>
 <p>During the decade, 584 has been produced by 184 artists. 50 different musical genre inhabit the nightclubs, house and playlists.</p>
 </section>
 <section id="question-2-number-of-songs-per-year" class="level3">
@@ -651,26 +644,364 @@ Attachement du package : 'dplyr'</code></pre>
 </div>
 </div>
 </section>
-<section id="question-5" class="level3">
-<h3 class="anchored" data-anchor-id="question-5">Question 5 :</h3>
+<section id="question-5-energy-and-dance-ability" class="level3">
+<h3 class="anchored" data-anchor-id="question-5-energy-and-dance-ability">Question 5 : Energy and Dance ability</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Key Medians</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">year</th>
+<th style="text-align: right;">Energy</th>
+<th style="text-align: right;">Danceab</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">82.0</td>
+<td style="text-align: right;">67.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">77.0</td>
+<td style="text-align: right;">66.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">79.0</td>
+<td style="text-align: right;">67.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">78.0</td>
+<td style="text-align: right;">62.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2014</td>
+<td style="text-align: right;">72.0</td>
+<td style="text-align: right;">63.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2015</td>
+<td style="text-align: right;">75.0</td>
+<td style="text-align: right;">66.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2016</td>
+<td style="text-align: right;">70.5</td>
+<td style="text-align: right;">64.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">72.0</td>
+<td style="text-align: right;">68.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2018</td>
+<td style="text-align: right;">67.0</td>
+<td style="text-align: right;">67.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">68.0</td>
+<td style="text-align: right;">70.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="question-6" class="level3">
 <h3 class="anchored" data-anchor-id="question-6">Question 6 :</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Dplyr-and-Tidyr-lab_files/figure-html/Median%20by%20year-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 </section>
 <section id="exercise-2" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
-<section id="question-1" class="level3">
-<h3 class="anchored" data-anchor-id="question-1">Question 1 :</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Marital status"                                
+ [2] "Application mode"                              
+ [3] "Application order"                             
+ [4] "Course"                                        
+ [5] "Daytime/evening attendance\t"                  
+ [6] "Previous qualification"                        
+ [7] "Previous qualification (grade)"                
+ [8] "Nacionality"                                   
+ [9] "Mother's qualification"                        
+[10] "Father's qualification"                        
+[11] "Mother's occupation"                           
+[12] "Father's occupation"                           
+[13] "Admission grade"                               
+[14] "Displaced"                                     
+[15] "Educational special needs"                     
+[16] "Debtor"                                        
+[17] "Tuition fees up to date"                       
+[18] "Gender"                                        
+[19] "Scholarship holder"                            
+[20] "Age at enrollment"                             
+[21] "International"                                 
+[22] "Curricular units 1st sem (credited)"           
+[23] "Curricular units 1st sem (enrolled)"           
+[24] "Curricular units 1st sem (evaluations)"        
+[25] "Curricular units 1st sem (approved)"           
+[26] "Curricular units 1st sem (grade)"              
+[27] "Curricular units 1st sem (without evaluations)"
+[28] "Curricular units 2nd sem (credited)"           
+[29] "Curricular units 2nd sem (enrolled)"           
+[30] "Curricular units 2nd sem (evaluations)"        
+[31] "Curricular units 2nd sem (approved)"           
+[32] "Curricular units 2nd sem (grade)"              
+[33] "Curricular units 2nd sem (without evaluations)"
+[34] "Unemployment rate"                             
+[35] "Inflation rate"                                
+[36] "GDP"                                           
+[37] "Target"                                        </code></pre>
+</div>
+</div>
+<section id="question-1-age-of-enrollement" class="level3">
+<h3 class="anchored" data-anchor-id="question-1-age-of-enrollement">Question 1 : Age of enrollement</h3>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Gender'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Median Age of Enrollment</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Gender</th>
+<th style="text-align: left;">Marital status</th>
+<th style="text-align: right;">Median value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Male</td>
+<td style="text-align: left;">single</td>
+<td style="text-align: right;">20.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Male</td>
+<td style="text-align: left;">married</td>
+<td style="text-align: right;">37.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Male</td>
+<td style="text-align: left;">divorced</td>
+<td style="text-align: right;">40.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Male</td>
+<td style="text-align: left;">widower</td>
+<td style="text-align: right;">43.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Male</td>
+<td style="text-align: left;">facto union</td>
+<td style="text-align: right;">34.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Male</td>
+<td style="text-align: left;">legally separated</td>
+<td style="text-align: right;">55.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Female</td>
+<td style="text-align: left;">single</td>
+<td style="text-align: right;">19.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Female</td>
+<td style="text-align: left;">married</td>
+<td style="text-align: right;">34.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Female</td>
+<td style="text-align: left;">divorced</td>
+<td style="text-align: right;">38.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Female</td>
+<td style="text-align: left;">widower</td>
+<td style="text-align: right;">21.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Female</td>
+<td style="text-align: left;">facto union</td>
+<td style="text-align: right;">27.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Female</td>
+<td style="text-align: left;">legally separated</td>
+<td style="text-align: right;">41.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
-<section id="question-2" class="level3">
-<h3 class="anchored" data-anchor-id="question-2">Question 2 :</h3>
+<section id="question-2-new-tables" class="level3">
+<h3 class="anchored" data-anchor-id="question-2-new-tables">Question 2 : New tables</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Median Age of Enrollment (v2)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Marital status</th>
+<th style="text-align: right;">Male</th>
+<th style="text-align: right;">Female</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">single</td>
+<td style="text-align: right;">20.0</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">married</td>
+<td style="text-align: right;">37.0</td>
+<td style="text-align: right;">34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">divorced</td>
+<td style="text-align: right;">40.5</td>
+<td style="text-align: right;">38</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">widower</td>
+<td style="text-align: right;">43.0</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">facto union</td>
+<td style="text-align: right;">34.0</td>
+<td style="text-align: right;">27</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">legally separated</td>
+<td style="text-align: right;">55.0</td>
+<td style="text-align: right;">41</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
-<section id="question-3" class="level3">
-<h3 class="anchored" data-anchor-id="question-3">Question 3 :</h3>
+<section id="question-3-conditional-means" class="level3">
+<h3 class="anchored" data-anchor-id="question-3-conditional-means">Question 3 : Conditional means</h3>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `summarize()`.
+ℹ In argument: `across(starts_with("Curricular units"), mean, na.rm = TRUE)`.
+ℹ In group 1: `Target = Dropout`.
+Caused by warning:
+! The `...` argument of `across()` is deprecated as of dplyr 1.1.0.
+Supply arguments directly to `.fns` through an anonymous function instead.
+
+  # Previously
+  across(a:b, mean, na.rm = TRUE)
+
+  # Now
+  across(a:b, \(x) mean(x, na.rm = TRUE))</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Conditional Mean by Curricular Units</caption>
+<colgroup>
+<col style="width: 1%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Target</th>
+<th style="text-align: right;">Curricular units 1st sem (credited)</th>
+<th style="text-align: right;">Curricular units 1st sem (enrolled)</th>
+<th style="text-align: right;">Curricular units 1st sem (evaluations)</th>
+<th style="text-align: right;">Curricular units 1st sem (approved)</th>
+<th style="text-align: right;">Curricular units 1st sem (grade)</th>
+<th style="text-align: right;">Curricular units 1st sem (without evaluations)</th>
+<th style="text-align: right;">Curricular units 2nd sem (credited)</th>
+<th style="text-align: right;">Curricular units 2nd sem (enrolled)</th>
+<th style="text-align: right;">Curricular units 2nd sem (evaluations)</th>
+<th style="text-align: right;">Curricular units 2nd sem (approved)</th>
+<th style="text-align: right;">Curricular units 2nd sem (grade)</th>
+<th style="text-align: right;">Curricular units 2nd sem (without evaluations)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Dropout</td>
+<td style="text-align: right;">0.6094300</td>
+<td style="text-align: right;">5.821253</td>
+<td style="text-align: right;">7.751583</td>
+<td style="text-align: right;">2.551724</td>
+<td style="text-align: right;">7.256655</td>
+<td style="text-align: right;">0.1921182</td>
+<td style="text-align: right;">0.4496833</td>
+<td style="text-align: right;">5.780436</td>
+<td style="text-align: right;">7.173821</td>
+<td style="text-align: right;">1.940183</td>
+<td style="text-align: right;">5.899339</td>
+<td style="text-align: right;">0.2378607</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Graduate</td>
+<td style="text-align: right;">0.8474423</td>
+<td style="text-align: right;">6.669534</td>
+<td style="text-align: right;">8.276596</td>
+<td style="text-align: right;">6.232232</td>
+<td style="text-align: right;">12.643655</td>
+<td style="text-align: right;">0.0882752</td>
+<td style="text-align: right;">0.6668176</td>
+<td style="text-align: right;">6.628339</td>
+<td style="text-align: right;">8.142146</td>
+<td style="text-align: right;">6.177003</td>
+<td style="text-align: right;">12.697276</td>
+<td style="text-align: right;">0.0805794</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Enrolled</td>
+<td style="text-align: right;">0.5075567</td>
+<td style="text-align: right;">5.964735</td>
+<td style="text-align: right;">9.341310</td>
+<td style="text-align: right;">4.318640</td>
+<td style="text-align: right;">11.125257</td>
+<td style="text-align: right;">0.1775819</td>
+<td style="text-align: right;">0.3589421</td>
+<td style="text-align: right;">5.938287</td>
+<td style="text-align: right;">9.435768</td>
+<td style="text-align: right;">4.057934</td>
+<td style="text-align: right;">11.117364</td>
+<td style="text-align: right;">0.1876574</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
-<section id="question-4" class="level3">
-<h3 class="anchored" data-anchor-id="question-4">Question 4 :</h3>
+<section id="question-4-pivot" class="level3">
+<h3 class="anchored" data-anchor-id="question-4-pivot">Question 4 : Pivot</h3>
 </section>
 </section>
 

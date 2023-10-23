@@ -29,28 +29,36 @@ Spt <- readRDS("~/Dauphine/M1 Quantitative Economics/Data Management/Dplyr-Lab--
 
 ### Question 1 : A global perspective on the music scene during the last decade
 
-```{r Variable name}
+```{r, results='hide'}
 Var_name <- names(Spt)
 Var_name
 
-
 ```
 
 ```{r}
-d_song <- Spt %>% distinct(title,.keep_all = TRUE) %>% nrow()
-d_art <- Spt %>% distinct(artist, .keep_all = TRUE) %>% nrow()
-d_genre <- Spt %>% distinct(`top genre`, .keep_all = TRUE) %>% nrow()
+d_song <- Spt %>% 
+  distinct(title,.keep_all = TRUE) %>% 
+  nrow()
+
+d_art <- Spt %>% 
+  distinct(artist, .keep_all = TRUE) %>% 
+  nrow()
+
+d_genre <- Spt %>% 
+  distinct(`top genre`, .keep_all = TRUE) %>% 
+  nrow()
 
 
 ```
 
-```{r}
+```{r, results='hide'}
 #I create some labels to be sure to recognize my data if I forget what it is
 
 library("labelled")
 var_label(d_art) <- "Artists (distinct data)"
 var_label(d_song) <- "Chansons (distinct data)"
 var_label(d_genre) <- "Genre (distinct data)"
+
 
 ```
 
@@ -59,17 +67,27 @@ During the decade, `r d_song` has been produced by `r d_art` artists. `r d_genre
 ### Question 2 : Number of songs per year
 
 ```{r}
-s_by_y <- Spt %>% distinct(artist,title, .keep_all = TRUE) %>% group_by(year)  %>% summarise("Number of songs" = n())
+s_by_y <- Spt %>% 
+  distinct(artist,title, .keep_all = TRUE) %>% 
+  group_by(year)  %>% 
+  summarise("Number of songs" = n())
+
 var_label(s_by_y) <- "Song by year"
+
 s_by_y <- s_by_y %>% 
   rename("Release year" = year)
+
 knitr::kable(s_by_y, caption ="Volume of production", format= "markdown")
 ```
 
 ### Question 3 : Most prolific artist
 
 ```{r}
-Top_artist <-Spt %>% group_by(artist)%>% summarise("nsongs" = n()) %>% arrange(desc(nsongs))
+Top_artist <-Spt %>%
+  distinct(artist,title, .keep_all = TRUE)%>% 
+  group_by(artist)%>% 
+  summarise("nsongs" = n()) %>% 
+  arrange(desc(nsongs))
 
 top_artist_one <- head(Top_artist, 1)
 
@@ -84,21 +102,80 @@ cat(Mysentence)
 ### Question 4 : BPM
 
 ```{r}
-BPM_stats <- Spt %>% distinct(title, .keep_all = TRUE) %>% group_by(`top genre`)%>% 
+BPM_stats <- Spt %>% 
+  distinct(title, .keep_all = TRUE) %>% 
+  group_by(`top genre`)%>% 
   summarize("Number of songs"=n(),"Min"=min(bpm), "Mediane"=median(bpm), "Moyenne"=mean(bpm), "Max"=max(bpm), "Sd in percentage"=(sd(bpm)/mean(bpm)))
+
 knitr::kable(BPM_stats, caption ="Statistics on the BPM", format= "markdown")
 ```
 
-### Question 5 :
+### Question 5 : Energy and Dance ability
+
+```{r}
+D_and_en <- Spt %>% distinct(artist,title, .keep_all = TRUE) %>% 
+  group_by(year)%>% 
+  summarize("Energy"=median(nrgy), "Danceab"=median(dnce))
+
+var_label(D_and_en) <-"Statistiques médianes Dance ability and energy"
+
+knitr::kable(D_and_en, caption = "Key Medians", format = "markdown")
+
+
+```
 
 ### Question 6 :
 
+```{r Median by year}
+ggplot(D_and_en, aes(x = year)) +
+  geom_line(aes(y = Energy, color = "Energy")) +
+  geom_line(aes(y = Danceab, color = "Danceab")) +
+  labs(title = "Median By year", x = "Year", y = "Median values", color ="Studied values") +
+  theme_minimal()
+```
+
 ## Exercise 2
 
-### Question 1 :
+```{r Setup, results='hide'}
+dropout <- readRDS("~/Dauphine/M1 Quantitative Economics/Data Management/Dplyr-Lab---Friday-Group/dropout.Rds")
+Var_name2 <- names(dropout)
+Var_name2
+```
 
-### Question 2 :
+### Question 1 : Age of enrollement
 
-### Question 3 :
+```{r}
+Aoe <- dropout %>% 
+  group_by(Gender,`Marital status`) %>% 
+  summarise("Median value"=median(`Age at enrollment`))
 
-### Question 4 :
+knitr::kable(Aoe, caption ="Median Age of Enrollment", format= "markdown")
+
+
+var_label(Aoe)<- "Age of Enrollment by Genre and Marital status"
+```
+
+### Question 2 : New tables
+
+```{r}
+Aoe_vpiv <- Aoe %>% 
+  pivot_wider(names_from = Gender, values_from = `Median value`)
+
+var_label(Aoe_vpiv)<- "Median Age of Enrollment pivoted version"
+
+knitr::kable(Aoe_vpiv, caption ="Median Age of Enrollment (v2)", format= "markdown")
+```
+
+### Question 3 : Conditional means
+
+```{r}
+Cmeanu <- dropout %>% 
+  group_by(Target) %>% 
+  summarize(across(starts_with("Curricular units"), mean, na.rm = TRUE))
+
+var_label(Cmeanu)<- "Conditional Mean by Curricular Units"
+
+knitr::kable(Cmeanu, caption="Conditional Mean by Curricular Units", format="markdown")
+```
+
+### Question 4 : Pivot
