@@ -1,9 +1,10 @@
 ---
 title: "Dplyr and Tidyr lab"
-format: html
+format: pdf
 editor: visual
 author : Cédric BAZILE
 execute: 
+  keep-md: true
   echo: FALSE
 ---
 
@@ -76,7 +77,7 @@ Top_artist <-Spt %>% group_by(artist)%>% summarise("Number of songs" = n()) %>% 
 
 ```
 
-This decade, `r Top_artist$artist [1,]`was the artist who produced the most song with
+This decade, `r Top_artist$artist [1,]`was the artist who produced the most songs who produced `` r Top_artist$`Number of songs`[1,] . ``
 
 ### Question 4 :
 
