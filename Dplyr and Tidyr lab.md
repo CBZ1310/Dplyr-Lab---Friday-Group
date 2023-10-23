@@ -6,44 +6,26 @@ author : Cédric BAZILE
 execute: 
   keep-md: true
   echo: FALSE
+  warning: false
 ---
 
 
 ::: {.cell}
-::: {.cell-output .cell-output-stderr}
-```
-here() starts at C:/Users/cedri/OneDrive/Documents/Dauphine/M1 Quantitative Economics/Data Management/Dplyr-Lab---Friday-Group
-```
-:::
 
-::: {.cell-output .cell-output-stderr}
-```
-
-Attachement du package : 'dplyr'
-```
-:::
-
-::: {.cell-output .cell-output-stderr}
-```
-Les objets suivants sont masqués depuis 'package:stats':
-
-    filter, lag
-```
-:::
-
-::: {.cell-output .cell-output-stderr}
-```
-Les objets suivants sont masqués depuis 'package:base':
-
-    intersect, setdiff, setequal, union
-```
-:::
 :::
 
 
 <center>
 
 # Dplyr-Lab (Friday-Group)
+
+</center>
+
+<center>
+
+GitHub link : <https://github.com/CBZ1310/Dplyr-Lab—Friday-Group>
+
+GitHub code : <https://github.com/CBZ1310/Dplyr-Lab—Friday-Group.git>
 
 </center>
 
@@ -65,7 +47,7 @@ Les objets suivants sont masqués depuis 'package:base':
 :::
 
 
-During the decade, 584 has been produced by 184 artists. 50 different musical genre inhabit the nightclubs, house and playlists.
+During the decade, 584 songs has been produced by 184 artists. 50 different musical genres inhabited the nightclubs, house and playlists.
 
 ### Question 2 : Number of songs per year
 
@@ -202,47 +184,7 @@ Table: Key Medians
 
 
 ::: {.cell}
-::: {.cell-output .cell-output-stdout}
-```
- [1] "Marital status"                                
- [2] "Application mode"                              
- [3] "Application order"                             
- [4] "Course"                                        
- [5] "Daytime/evening attendance\t"                  
- [6] "Previous qualification"                        
- [7] "Previous qualification (grade)"                
- [8] "Nacionality"                                   
- [9] "Mother's qualification"                        
-[10] "Father's qualification"                        
-[11] "Mother's occupation"                           
-[12] "Father's occupation"                           
-[13] "Admission grade"                               
-[14] "Displaced"                                     
-[15] "Educational special needs"                     
-[16] "Debtor"                                        
-[17] "Tuition fees up to date"                       
-[18] "Gender"                                        
-[19] "Scholarship holder"                            
-[20] "Age at enrollment"                             
-[21] "International"                                 
-[22] "Curricular units 1st sem (credited)"           
-[23] "Curricular units 1st sem (enrolled)"           
-[24] "Curricular units 1st sem (evaluations)"        
-[25] "Curricular units 1st sem (approved)"           
-[26] "Curricular units 1st sem (grade)"              
-[27] "Curricular units 1st sem (without evaluations)"
-[28] "Curricular units 2nd sem (credited)"           
-[29] "Curricular units 2nd sem (enrolled)"           
-[30] "Curricular units 2nd sem (evaluations)"        
-[31] "Curricular units 2nd sem (approved)"           
-[32] "Curricular units 2nd sem (grade)"              
-[33] "Curricular units 2nd sem (without evaluations)"
-[34] "Unemployment rate"                             
-[35] "Inflation rate"                                
-[36] "GDP"                                           
-[37] "Target"                                        
-```
-:::
+
 :::
 
 
@@ -250,13 +192,6 @@ Table: Key Medians
 
 
 ::: {.cell}
-::: {.cell-output .cell-output-stderr}
-```
-`summarise()` has grouped output by 'Gender'. You can override using the
-`.groups` argument.
-```
-:::
-
 ::: {.cell-output-display}
 Table: Median Age of Enrollment
 
@@ -301,23 +236,6 @@ Table: Median Age of Enrollment (v2)
 
 
 ::: {.cell}
-::: {.cell-output .cell-output-stderr}
-```
-Warning: There was 1 warning in `summarize()`.
-ℹ In argument: `across(starts_with("Curricular units"), mean, na.rm = TRUE)`.
-ℹ In group 1: `Target = Dropout`.
-Caused by warning:
-! The `...` argument of `across()` is deprecated as of dplyr 1.1.0.
-Supply arguments directly to `.fns` through an anonymous function instead.
-
-  # Previously
-  across(a:b, mean, na.rm = TRUE)
-
-  # Now
-  across(a:b, \(x) mean(x, na.rm = TRUE))
-```
-:::
-
 ::: {.cell-output-display}
 Table: Conditional Mean by Curricular Units
 

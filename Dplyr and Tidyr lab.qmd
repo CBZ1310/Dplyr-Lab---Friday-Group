@@ -6,9 +6,10 @@ author : Cédric BAZILE
 execute: 
   keep-md: true
   echo: FALSE
+  warning: false
 ---
 
-```{r}
+```{r, results='hide'}
 #Setup
 
 here::i_am("Dplyr-Lab---Friday-Group.Rproj")
@@ -22,6 +23,14 @@ Spt <- readRDS("~/Dauphine/M1 Quantitative Economics/Data Management/Dplyr-Lab--
 <center>
 
 # Dplyr-Lab (Friday-Group)
+
+</center>
+
+<center>
+
+GitHub link : <https://github.com/CBZ1310/Dplyr-Lab—Friday-Group>
+
+GitHub code : <https://github.com/CBZ1310/Dplyr-Lab—Friday-Group.git>
 
 </center>
 
@@ -62,7 +71,7 @@ var_label(d_genre) <- "Genre (distinct data)"
 
 ```
 
-During the decade, `r d_song` has been produced by `r d_art` artists. `r d_genre` different musical genre inhabit the nightclubs, house and playlists.
+During the decade, `r d_song` songs has been produced by `r d_art` artists. `r d_genre` different musical genres inhabited the nightclubs, house and playlists.
 
 ### Question 2 : Number of songs per year
 

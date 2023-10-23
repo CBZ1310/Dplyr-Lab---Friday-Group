@@ -67,34 +67,19 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>here() starts at C:/Users/cedri/OneDrive/Documents/Dauphine/M1 Quantitative Economics/Data Management/Dplyr-Lab---Friday-Group</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attachement du package : 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Les objets suivants sont masqués depuis 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Les objets suivants sont masqués depuis 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-</div>
 <center>
 <section id="dplyr-lab-friday-group" class="level1">
 <h1>Dplyr-Lab (Friday-Group)</h1>
 </section></center>
+<center>
+<p>GitHub link : <a href="https://github.com/CBZ1310/Dplyr-Lab—Friday-Group" class="uri">https://github.com/CBZ1310/Dplyr-Lab—Friday-Group</a></p>
+<p>GitHub code : <a href="https://github.com/CBZ1310/Dplyr-Lab—Friday-Group.git" class="uri">https://github.com/CBZ1310/Dplyr-Lab—Friday-Group.git</a></p>
+</center>
 <section id="exercise-1" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
 <section id="question-1-a-global-perspective-on-the-music-scene-during-the-last-decade" class="level3">
 <h3 class="anchored" data-anchor-id="question-1-a-global-perspective-on-the-music-scene-during-the-last-decade">Question 1 : A global perspective on the music scene during the last decade</h3>
-<p>During the decade, 584 has been produced by 184 artists. 50 different musical genre inhabit the nightclubs, house and playlists.</p>
+<p>During the decade, 584 songs has been produced by 184 artists. 50 different musical genres inhabited the nightclubs, house and playlists.</p>
 </section>
 <section id="question-2-number-of-songs-per-year" class="level3">
 <h3 class="anchored" data-anchor-id="question-2-number-of-songs-per-year">Question 2 : Number of songs per year</h3>
@@ -724,54 +709,9 @@ Attachement du package : 'dplyr'</code></pre>
 </section>
 <section id="exercise-2" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "Marital status"                                
- [2] "Application mode"                              
- [3] "Application order"                             
- [4] "Course"                                        
- [5] "Daytime/evening attendance\t"                  
- [6] "Previous qualification"                        
- [7] "Previous qualification (grade)"                
- [8] "Nacionality"                                   
- [9] "Mother's qualification"                        
-[10] "Father's qualification"                        
-[11] "Mother's occupation"                           
-[12] "Father's occupation"                           
-[13] "Admission grade"                               
-[14] "Displaced"                                     
-[15] "Educational special needs"                     
-[16] "Debtor"                                        
-[17] "Tuition fees up to date"                       
-[18] "Gender"                                        
-[19] "Scholarship holder"                            
-[20] "Age at enrollment"                             
-[21] "International"                                 
-[22] "Curricular units 1st sem (credited)"           
-[23] "Curricular units 1st sem (enrolled)"           
-[24] "Curricular units 1st sem (evaluations)"        
-[25] "Curricular units 1st sem (approved)"           
-[26] "Curricular units 1st sem (grade)"              
-[27] "Curricular units 1st sem (without evaluations)"
-[28] "Curricular units 2nd sem (credited)"           
-[29] "Curricular units 2nd sem (enrolled)"           
-[30] "Curricular units 2nd sem (evaluations)"        
-[31] "Curricular units 2nd sem (approved)"           
-[32] "Curricular units 2nd sem (grade)"              
-[33] "Curricular units 2nd sem (without evaluations)"
-[34] "Unemployment rate"                             
-[35] "Inflation rate"                                
-[36] "GDP"                                           
-[37] "Target"                                        </code></pre>
-</div>
-</div>
 <section id="question-1-age-of-enrollement" class="level3">
 <h3 class="anchored" data-anchor-id="question-1-age-of-enrollement">Question 1 : Age of enrollement</h3>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'Gender'. You can override using the
-`.groups` argument.</code></pre>
-</div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <caption>Median Age of Enrollment</caption>
@@ -900,20 +840,6 @@ Attachement du package : 'dplyr'</code></pre>
 <section id="question-3-conditional-means" class="level3">
 <h3 class="anchored" data-anchor-id="question-3-conditional-means">Question 3 : Conditional means</h3>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: There was 1 warning in `summarize()`.
-ℹ In argument: `across(starts_with("Curricular units"), mean, na.rm = TRUE)`.
-ℹ In group 1: `Target = Dropout`.
-Caused by warning:
-! The `...` argument of `across()` is deprecated as of dplyr 1.1.0.
-Supply arguments directly to `.fns` through an anonymous function instead.
-
-  # Previously
-  across(a:b, mean, na.rm = TRUE)
-
-  # Now
-  across(a:b, \(x) mean(x, na.rm = TRUE))</code></pre>
-</div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <caption>Conditional Mean by Curricular Units</caption>
